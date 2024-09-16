@@ -25,7 +25,10 @@ void ms_delay(int ms) {
 int main(void) {
     // Configure flash to add waitstates to avoid timing errors
     configureFlash();
-    
+
+    // Setup the PLL and switch clock source to the PLL
+    configureClock();
+
     // Turn on clock to GPIOB
     RCC->AHB2ENR |= (1 << 1);
 
