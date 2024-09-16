@@ -7,10 +7,11 @@
 // Includes for libraries
 #include "STM32L432KC_RCC.h"
 #include "STM32L432KC_GPIO.h"
+#include "STM32L432KC_FLASH.h"
 
 // Define macros for constants
 #define LED_PIN           3
-#define DELAY_DURATION_MS    500
+#define DELAY_DURATION_MS    200
 
 // Function for dummy delay by executing nops
 void ms_delay(int ms) {
@@ -22,6 +23,9 @@ void ms_delay(int ms) {
 }
 
 int main(void) {
+    // Configure flash to add waitstates to avoid timing errors
+    configureFlash();
+    
     // Turn on clock to GPIOB
     RCC->AHB2ENR |= (1 << 1);
 
